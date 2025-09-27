@@ -50,11 +50,17 @@ if choice == "List Videos":
     st.subheader("All Videos")
     videos = list_videos()
     if videos:
+        df = pd.DataFrame(videos, columns=["id", "Video Name", "Video Time"])
         
-        table_data = [[i+1, v[1], v[2]] for i, v in enumerate(videos)]
+        # Replace 'id' with S.No starting from 1
+        df["S.No"] = range(1, len(df) + 1)
         
-        # Column names
-        st.table(table_data, columns=["S.No", "Video Name", "Video Time"])
+        # Reorder columns
+        df = df[["S.No", "Video Name", "Video Time"]]
+        
+        # Display table
+        st.table(df)
+        
         
         # df = pd.DataFrame(videos, columns=["S.No", "Video Name", "Video Time"])
         # df["S.No"] = range(1, len(df) + 1)
