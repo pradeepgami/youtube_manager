@@ -50,9 +50,15 @@ if choice == "List Videos":
     st.subheader("All Videos")
     videos = list_videos()
     if videos:
-        df = pd.DataFrame(videos, columns=["S.No", "Video Name", "Video Time"])
-        df["S.No"] = range(1, len(df) + 1)
-        st.table(df)
+        
+        table_data = [[i+1, v[1], v[2]] for i, v in enumerate(videos)]
+        
+        # Column names
+        st.table(table_data, columns=["S.No", "Video Name", "Video Time"])
+        
+        # df = pd.DataFrame(videos, columns=["S.No", "Video Name", "Video Time"])
+        # df["S.No"] = range(1, len(df) + 1)
+        # st.table(df)
     else:
         st.info("No videos found.")
 
