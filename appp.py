@@ -50,11 +50,7 @@ if choice == "List Videos":
     st.subheader("All Videos")
     videos = list_videos()
     if videos:
-        # Row numbers + data
-        data = []
-        for i, (vid_id, name, time) in enumerate(videos, start=1):
-            data.append((i, name, time))
-        df = pd.DataFrame(data, columns=["S.No", "Video Name", "Video Time"])
+        df = pd.DataFrame(videos, columns=["S.No", "Video Name", "Video Time"])
         st.table(df)
     else:
         st.info("No videos found.")
